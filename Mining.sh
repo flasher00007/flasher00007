@@ -37,5 +37,5 @@ EOF
 
 chmod +x start.sh
 
-echo "[*] Starting miner..."
-./start.sh
+echo "[*] Starting miner in background..."
+nohup ./start.sh > xmrig.log 2>&1 &
