@@ -5,7 +5,7 @@ apt update -y
 apt upgrade -y
 
 echo "[*] Installing basic dependencies..."
-apt install git wget proot cmake build-essential -y
+apt install git wget proot cmake build-essential tmux -y
 
 echo "[*] Installing libuv (Termux package)..."
 pkg install libuv -y
@@ -37,5 +37,9 @@ EOF
 
 chmod +x start.sh
 
-echo "[*] Starting miner in background..."
-nohup ./start.sh > xmrig.log 2>&1 &
+echo "[*] Starting miner inside tmux session..."
+
+# Start the miner in a tmux session
+tmux new-session -d -s xmrig './start.sh'
+
+echo "[*] Miner started inside tmux session 'xmrig'."
